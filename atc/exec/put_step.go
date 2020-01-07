@@ -184,8 +184,8 @@ func (step *PutStep) Run(ctx context.Context, state RunState) error {
 		return err
 	}
 
-	if failure, ok := result.Failure.(runtime.ErrResourceScriptFailed); ok {
-		step.delegate.Finished(logger, ExitStatus(failure.ExitStatus), runtime.VersionResult{})
+	if result.Status != 0 {
+		step.delegate.Finished(logger, ExitStatus(result.Status), runtime.VersionResult{})
 		return nil
 	}
 

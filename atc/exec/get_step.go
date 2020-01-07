@@ -202,7 +202,7 @@ func (step *GetStep) Run(ctx context.Context, state RunState) error {
 
 	step.delegate.Finished(
 		logger,
-		ExitStatus(getResult.Status),
+		ExitStatus(getResult.ExitStatus),
 		getResult.VersionResult,
 	)
 

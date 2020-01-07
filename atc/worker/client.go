@@ -101,18 +101,16 @@ type TaskResult struct {
 type PutResult struct {
 	Status        int
 	VersionResult runtime.VersionResult
-	Failure       error
 }
 
 type GetResult struct {
-	Status        int
+	ExitStatus    int
 	VersionResult runtime.VersionResult
 	GetArtifact   runtime.GetArtifact
-	Failure error
 }
 
 func (result GetResult) ExitSuccessful() bool {
-	return result.Status == 0
+	return result.ExitStatus == 0
 }
 
 type ImageFetcherSpec struct {
@@ -561,7 +559,6 @@ func (client *client) RunPutStep(
 			return PutResult{
 				Status:        failErr.ExitStatus,
 				VersionResult: runtime.VersionResult{},
-				Failure:       failErr,
 			}, nil
 		} else {
 			return PutResult{}, err
