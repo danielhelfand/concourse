@@ -126,12 +126,12 @@ func (s *fetchSource) Find() (GetResult, Volume, bool, error) {
 	}
 
 	return GetResult{
-			0,
-			runtime.VersionResult{
+			Status: 0,
+			VersionResult: runtime.VersionResult{
 				Version:  s.cache.Version(),
 				Metadata: atcMetaData,
 			},
-			runtime.GetArtifact{VolumeHandle: volume.Handle()},
+			GetArtifact: runtime.GetArtifact{VolumeHandle: volume.Handle()},
 		},
 		volume, true, nil
 }
@@ -175,10 +175,9 @@ func (s *fetchSource) Create(ctx context.Context) (GetResult, Volume, error) {
 		// TODO: Is this compatible with previous behaviour of returning a nil when error type is NOT ErrResourceScriptFailed
 
 		if failErr, ok := err.(runtime.ErrResourceScriptFailed); ok {
-			// TODO: we need to pass along the script error message
-			//		 contained in failErr.Stderr
 			return GetResult{
 				Status: failErr.ExitStatus,
+				Failure: failErr,
 			}, nil, nil
 		}
 		return GetResult{}, nil, err

@@ -108,6 +108,7 @@ type GetResult struct {
 	Status        int
 	VersionResult runtime.VersionResult
 	GetArtifact   runtime.GetArtifact
+	Failure error
 }
 
 func (result GetResult) ExitSuccessful() bool {
