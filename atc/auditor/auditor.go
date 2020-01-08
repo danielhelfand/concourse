@@ -129,7 +129,8 @@ func (a *auditor) ValidateAction(action string) bool {
 		atc.DownloadCLI,
 		atc.GetInfo,
 		atc.GetInfoCreds,
-		atc.ListActiveUsersSince:
+		atc.ListActiveUsersSince,
+		atc.GetUser:
 		return a.EnableSystemAuditLog
 	case atc.ListTeams,
 		atc.SetTeam,

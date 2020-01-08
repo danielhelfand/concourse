@@ -103,6 +103,7 @@ const (
 	GetArtifact        = "GetArtifact"
 	ListBuildArtifacts = "ListBuildArtifacts"
 
+	GetUser              = "GetUser"
 	ListActiveUsersSince = "ListActiveUsersSince"
 )
 
@@ -193,6 +194,7 @@ var Routes = rata.Routes([]rata.Route{
 	{Path: "/api/v1/info", Method: "GET", Name: GetInfo},
 	{Path: "/api/v1/info/creds", Method: "GET", Name: GetInfoCreds},
 
+	{Path: "/api/v1/user", Method: "GET", Name: GetUser},
 	{Path: "/api/v1/users", Method: "GET", Name: ListActiveUsersSince},
 
 	{Path: "/api/v1/containers/destroying", Method: "GET", Name: ListDestroyingContainers},
